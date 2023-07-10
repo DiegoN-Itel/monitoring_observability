@@ -72,8 +72,8 @@ Resources:
     Properties:
       TemplateURL: https://observability-diego-dsi.s3.amazonaws.com/cloudwatch.yaml
       Parameters:
-
-
-
-        
-  
+        PipelineLogGroupName: !Ref PipelineLogGroupName
+        ExtractLogStreamName: !Ref ExtractLogStreamName
+        TransformLogStreamName: !Ref TransformLogStreamName
+        LoadLogStreamName: !Ref LoadLogStreamName
+        ResultLogStreamName: !Ref ResultLogStreamName
