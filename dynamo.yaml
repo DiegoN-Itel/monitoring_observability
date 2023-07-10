@@ -1,30 +1,32 @@
 AWSTemplateFormatVersion: '2010-09-09'
 
 Parameters:
-  Dynamo_format_metadata_name:
+  DynamoFormatMetadataName:
     Type: String
-  Dynamo_format_metadata_key:
+  DynamoFormatMetadataKey:
     Type: String
-  Dynamo_data_quality_name:
+
+  DynamoDataQualityName:
     Type: String
-  Dynamo_data_quality_key:
+  DynamoDataQualityKey:
     Type: String
-  Dynamo_format_changes_metadata_name:
+    
+  DynamoFormatChangesMetadataName:
     Type: String
-  Dynamo_format_changes_metadata_key:
+  DynamoFormatChangesMetadataKey:
     Type: String
 
 Resources:
   Dynamo_format_metadata:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: !Ref Dynamo_format_metadata_name
+      TableName: !Ref DynamoFormatMetadataName
       BillingMode: PAY_PER_REQUEST
       AttributeDefinitions:
-      - AttributeName: !Ref Dynamo_format_metadata_key
+      - AttributeName: !Ref DynamoFormatMetadataKey
         AttributeType: S
       KeySchema:
-      - AttributeName: !Ref Dynamo_format_metadata_key
+      - AttributeName: !Ref DynamoFormatMetadataKey
         KeyType: HASH
       SSESpecification:
         SSEEnabled: true  
@@ -32,13 +34,13 @@ Resources:
   Dynamo_data_quality_metadata:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: !Ref Dynamo_data_quality_name
+      TableName: !Ref DynamoDataQualityName
       BillingMode: PAY_PER_REQUEST
       AttributeDefinitions:
-      - AttributeName: !Ref Dynamo_data_quality_key
+      - AttributeName: !Ref DynamoDataQualityKey
         AttributeType: S
       KeySchema:
-      - AttributeName: !Ref Dynamo_pipeline_excecution_key
+      - AttributeName: !Ref DynamoDataQualityKey
         KeyType: HASH
       SSESpecification:
         SSEEnabled: true  
@@ -46,13 +48,13 @@ Resources:
   Dynamo_format_changes_metadata:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: !Ref Dynamo_format_changes_metadata_name
+      TableName: !Ref DynamoFormatChangesMetadataName
       BillingMode: PAY_PER_REQUEST
       AttributeDefinitions:
-      - AttributeName: !Ref Dynamo_format_changes_metadata_key
+      - AttributeName: !Ref DynamoFormatChangesMetadataKey
         AttributeType: S
       KeySchema:
-      - AttributeName: !Ref Dynamo_format_changes_metadata_key
+      - AttributeName: !Ref DynamoFormatChangesMetadataKey
         KeyType: HASH
       SSESpecification:
         SSEEnabled: true  
