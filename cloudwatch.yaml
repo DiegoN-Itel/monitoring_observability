@@ -1,0 +1,45 @@
+AWSTemplateFormatVersion: '2010-09-09'
+
+Parameters:
+  PipelineLogGroupName:
+    Type: String
+
+  ExtractLogStreamName:
+    Type: String
+  TransformLogStreamName:
+    Type: String
+  LoadLogStreamName:
+    Type: String
+  ResultLogStreamName:
+    Type: String
+
+Resources:
+  PipelineLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Ref PipelineLogGroupName
+      RetentionInDays: 30
+
+  ExtractLogStream:
+    Type: AWS::Logs::LogStream
+    Properties: 
+      LogGroupName: !Ref PipelineLogGroupName
+      LogStreamName: !Ref ExtractLogStreamName
+
+  TransformLogStream:
+    Type: AWS::Logs::LogStream
+    Properties: 
+      LogGroupName: !Ref PipelineLogGroupName
+      LogStreamName: !Ref TransformLogStreamName
+
+  LoadLogStream:
+    Type: AWS::Logs::LogStream
+    Properties: 
+      LogGroupName: !Ref PipelineLogGroupName
+      LogStreamName: !Ref LoadLogStreamName
+
+  ResultLogStream:
+    Type: AWS::Logs::LogStream
+    Properties: 
+      LogGroupName: !Ref PipelineLogGroupName
+      LogStreamName: !Ref ResultLogStreamName

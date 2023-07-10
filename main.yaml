@@ -32,6 +32,28 @@ Parameters:
     Type: String
     Default: pipeline
 
+
+  PipelineLogGroupName:
+    Description: 'Log group name for monitoring logs in cloudwatch'
+    Type: String
+    Default: monitoring-pipelines
+  ExtractLogStreamName:
+    Description: 'logstream for any extract error'
+    Type: String
+    Default: Extract
+  TransformLogStreamName:
+    Description: 'logstream for any transform error'
+    Type: String
+    Default: Transform
+  LoadLogStreamName:
+    Description: 'logstream for any load error'
+    Type: String
+    Default: Load
+  ResultLogStreamName:
+    Description: 'logstream for pipeline result summary'
+    Type: String
+    Default: Results
+  
 Resources:
   dynamo:
     Type: "AWS::CloudFormation::Stack"
@@ -44,6 +66,13 @@ Resources:
         DynamoDataQualityKey: !Ref DynamoDataQualityKey
         DynamoFormatChangesMetadataName: !Ref DynamoFormatChangesMetadataName
         DynamoFormatChangesMetadataKey: !Ref DynamoFormatChangesMetadataKey
+
+  cloudwatch:
+    Type: "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: https://observability-diego-dsi.s3.amazonaws.com/cloudwatch.yaml
+      Parameters:
+
 
 
         
