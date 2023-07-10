@@ -3,8 +3,48 @@ AWSTemplateFormatVersion: '2010-09-09'
 Description: 'AWS CloudFormation template to create monitoring and observability resources
               for Hybrid Data Architecture project. The main Idea with this template is create
               the aws resources that we need to catch possible errors in hour dat apipelines'
+
 Parameters:
+  Dynamo_format_metadata_name:
+    Description: 'Table name for data formats table'
+    Type: String
+    Default: format_metadata_logs
+  Dynamo_format_metadata_key:
+    Description: "key for data format table"
+    Type: String
+    Default: pipeline
+  
+  Dynamo_data_quality_name:
+    Description: 'Table name for data quality at load phase'
+    Type: String
+    Default: pipeline_excecution_logs
+  Dynamo_data_quality_key:
+    Description: 'key for data quality at load phase'
+    Type: String
+    Default: pipeline
+  
+  Dynamo_format_changes_metadata_name:
+    Description: 'Table name for format changes table'
+    Type: String
+    Default: format_changes_logs
+  Dynamo_format_changes_metadata_key:
+    Description: 'key for format changes table'
+    Type: String
+    Default: pipeline
 
 Resources:
+  dynamo:
+    Type: "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: https://observability-diego-dsi.s3.amazonaws.com/dynamo.yaml
+      Parameters:
+        Dynamo_format_metadata_name: !Ref Dynamo_format_metadata_name
+        Dynamo_format_metadata_key: !Ref Dynamo_format_metadata_key
+        Dynamo_data_quality_name: !Ref Dynamo_data_quality_name3
+        Dynamo_data_quality_key: !Ref Dynamo_data_quality_key
+        Dynamo_format_changes_metadata_name: !Ref Dynamo_format_changes_metadata_name
+        Dynamo_format_changes_metadata_key: !Ref Dynamo_format_changes_metadata_key
 
+
+        
   

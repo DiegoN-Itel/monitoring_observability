@@ -1,0 +1,58 @@
+AWSTemplateFormatVersion: '2010-09-09'
+
+Parameters:
+  Dynamo_format_metadata_name:
+    Type: String
+  Dynamo_format_metadata_key:
+    Type: String
+  Dynamo_data_quality_name:
+    Type: String
+  Dynamo_data_quality_key:
+    Type: String
+  Dynamo_format_changes_metadata_name:
+    Type: String
+  Dynamo_format_changes_metadata_key:
+    Type: String
+
+Resources:
+  Dynamo_format_metadata:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Ref Dynamo_format_metadata_name
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+      - AttributeName: !Ref Dynamo_format_metadata_key
+        AttributeType: S
+      KeySchema:
+      - AttributeName: !Ref Dynamo_format_metadata_key
+        KeyType: HASH
+      SSESpecification:
+        SSEEnabled: true  
+
+  Dynamo_data_quality_metadata:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Ref Dynamo_data_quality_name
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+      - AttributeName: !Ref Dynamo_data_quality_key
+        AttributeType: S
+      KeySchema:
+      - AttributeName: !Ref Dynamo_pipeline_excecution_key
+        KeyType: HASH
+      SSESpecification:
+        SSEEnabled: true  
+
+  Dynamo_format_changes_metadata:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Ref Dynamo_format_changes_metadata_name
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+      - AttributeName: !Ref Dynamo_format_changes_metadata_key
+        AttributeType: S
+      KeySchema:
+      - AttributeName: !Ref Dynamo_format_changes_metadata_key
+        KeyType: HASH
+      SSESpecification:
+        SSEEnabled: true  
