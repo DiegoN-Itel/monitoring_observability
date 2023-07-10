@@ -17,7 +17,7 @@ Parameters:
     Type: String
 
 Resources:
-  Dynamo_format_metadata:
+  DynamoFormatMetadata:
     Type: AWS::DynamoDB::Table
     Properties:
       TableName: !Ref DynamoFormatMetadataName
@@ -31,7 +31,7 @@ Resources:
       SSESpecification:
         SSEEnabled: true  
 
-  Dynamo_data_quality_metadata:
+  DynamoDataQualityMetadata:
     Type: AWS::DynamoDB::Table
     Properties:
       TableName: !Ref DynamoDataQualityName
@@ -45,7 +45,7 @@ Resources:
       SSESpecification:
         SSEEnabled: true  
 
-  Dynamo_format_changes_metadata:
+  DynamoFormatChangesMetadata:
     Type: AWS::DynamoDB::Table
     Properties:
       TableName: !Ref DynamoFormatChangesMetadataName
