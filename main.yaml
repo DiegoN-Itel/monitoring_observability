@@ -1,0 +1,10 @@
+AWSTemplateFormatVersion: '2010-09-09'
+
+Description: 'AWS CloudFormation template to create monitoring and observability resources
+              for Hybrid Data Architecture project. The main Idea with this template is create
+              the aws resources that we need to catch possible errors in hour dat apipelines'
+Parameters:
+
+Resources:
+
+  
