@@ -14,11 +14,11 @@ Parameters:
     Type: String
     Default: pipeline
   
-  DynamoDataQualityName:
+  DynamoDataQualityLogsName:
     Description: 'Table name for data quality at load phase'
     Type: String
-    Default: pipeline_excecution_logs
-  DynamoDataQualityKey:
+    Default: data_quality_logs
+  DynamoDataQualityLogsKey:
     Description: 'key for data quality at load phase'
     Type: String
     Default: pipeline
