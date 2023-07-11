@@ -52,6 +52,11 @@ Parameters:
     Description: 'logstream for pipeline result summary'
     Type: String
     Default: Results
+
+  BucketPipelineLogs:
+    Decription: 'Name of the bucket to write pipeline excecution logs'
+    Type: String
+    Default: DSI-Pipelines-Logs
   
 Resources:
   dynamo:
@@ -76,3 +81,10 @@ Resources:
         TransformLogStreamName: !Ref TransformLogStreamName
         LoadLogStreamName: !Ref LoadLogStreamName
         ResultLogStreamName: !Ref ResultLogStreamName
+
+  bucket:
+    Type: "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL:
+      Parameters:
+        BucketPipelineLogs: !Ref BucketPipelineLogs
