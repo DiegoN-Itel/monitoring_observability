@@ -1,7 +1,6 @@
 import boto3
 
 TABLE_NAME = "format_metadata"
-KEY_FIELD = 'pipeline'
 KEY = "altice_invoice"
 
 dynamodb = boto3.resource('dynamodb')
