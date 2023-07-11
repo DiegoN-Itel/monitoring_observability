@@ -85,6 +85,6 @@ Resources:
   bucket:
     Type: "AWS::CloudFormation::Stack"
     Properties:
-      TemplateURL:
+      TemplateURL: https://observability-diego-dsi.s3.amazonaws.com/bucket.yaml
       Parameters:
         BucketPipelineLogs: !Ref BucketPipelineLogs
