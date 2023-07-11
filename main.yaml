@@ -32,7 +32,6 @@ Parameters:
     Type: String
     Default: pipeline
 
-
   PipelineLogGroupName:
     Description: 'Log group name for monitoring logs in cloudwatch'
     Type: String
@@ -62,10 +61,10 @@ Resources:
       Parameters:
         DynamoFormatMetadataName: !Ref DynamoFormatMetadataName
         DynamoFormatMetadataKey: !Ref DynamoFormatMetadataKey
-        DynamoDataQualityName: !Ref DynamoDataQualityName
-        DynamoDataQualityKey: !Ref DynamoDataQualityKey
         DynamoFormatChangesMetadataName: !Ref DynamoFormatChangesMetadataName
         DynamoFormatChangesMetadataKey: !Ref DynamoFormatChangesMetadataKey
+        DynamoDataQualityLogsName: !Ref DynamoDataQualityLogsName
+        DynamoDataQualityLogsKey: !Ref DynamoDataQualityLogsKey
 
   cloudwatch:
     Type: "AWS::CloudFormation::Stack"

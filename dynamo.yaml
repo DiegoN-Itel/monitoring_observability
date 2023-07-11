@@ -5,15 +5,15 @@ Parameters:
     Type: String
   DynamoFormatMetadataKey:
     Type: String
-
-  DynamoDataQualityName:
-    Type: String
-  DynamoDataQualityKey:
-    Type: String
     
   DynamoFormatChangesMetadataName:
     Type: String
   DynamoFormatChangesMetadataKey:
+    Type: String
+
+  DynamoDataQualityLogsName:
+    Type: String
+  DynamoDataQualityLogsKey:
     Type: String
 
 Resources:
@@ -31,20 +31,6 @@ Resources:
       SSESpecification:
         SSEEnabled: true  
 
-  DynamoDataQualityMetadata:
-    Type: AWS::DynamoDB::Table
-    Properties:
-      TableName: !Ref DynamoDataQualityName
-      BillingMode: PAY_PER_REQUEST
-      AttributeDefinitions:
-      - AttributeName: !Ref DynamoDataQualityKey
-        AttributeType: S
-      KeySchema:
-      - AttributeName: !Ref DynamoDataQualityKey
-        KeyType: HASH
-      SSESpecification:
-        SSEEnabled: true  
-
   DynamoFormatChangesMetadata:
     Type: AWS::DynamoDB::Table
     Properties:
@@ -55,6 +41,20 @@ Resources:
         AttributeType: S
       KeySchema:
       - AttributeName: !Ref DynamoFormatChangesMetadataKey
+        KeyType: HASH
+      SSESpecification:
+        SSEEnabled: true
+
+  DynamoDataQualityMetadata:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Ref DynamoDataQualityLogsName
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+      - AttributeName: !Ref DynamoDataQualityLogsKey
+        AttributeType: S
+      KeySchema:
+      - AttributeName: !Ref DynamoDataQualityLogsKey
         KeyType: HASH
       SSESpecification:
         SSEEnabled: true  
