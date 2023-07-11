@@ -54,7 +54,7 @@ Parameters:
     Default: Results
 
   BucketPipelineLogs:
-    Decription: 'Name of the bucket to write pipeline excecution logs'
+    Description: 'Name of the bucket to write pipeline excecution logs'
     Type: String
     Default: DSI-Pipelines-Logs
   
