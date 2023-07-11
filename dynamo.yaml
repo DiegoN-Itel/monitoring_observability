@@ -25,6 +25,11 @@ Resources:
       AttributeDefinitions:
       - AttributeName: !Ref DynamoFormatMetadataKey
         AttributeType: S
+      - AttributeDefinition: Status
+        AttributeType: S
+      - AttributeDefinition: Tables
+        AttributeType: S
+
       KeySchema:
       - AttributeName: !Ref DynamoFormatMetadataKey
         KeyType: HASH
