@@ -22,24 +22,28 @@ Resources:
 
   ExtractLogStream:
     Type: AWS::Logs::LogStream
+    DependsOn: PipelineLogGroup
     Properties: 
       LogGroupName: !Ref PipelineLogGroupName
       LogStreamName: !Ref ExtractLogStreamName
 
   TransformLogStream:
     Type: AWS::Logs::LogStream
+    DependsOn: PipelineLogGroup
     Properties: 
       LogGroupName: !Ref PipelineLogGroupName
       LogStreamName: !Ref TransformLogStreamName
 
   LoadLogStream:
     Type: AWS::Logs::LogStream
+    DependsOn: PipelineLogGroup
     Properties: 
       LogGroupName: !Ref PipelineLogGroupName
       LogStreamName: !Ref LoadLogStreamName
 
   ResultLogStream:
     Type: AWS::Logs::LogStream
+    DependsOn: PipelineLogGroup
     Properties: 
       LogGroupName: !Ref PipelineLogGroupName
       LogStreamName: !Ref ResultLogStreamName
