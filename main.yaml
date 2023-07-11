@@ -56,7 +56,7 @@ Parameters:
   BucketPipelineLogs:
     Description: 'Name of the bucket to write pipeline excecution logs'
     Type: String
-    Default: DSI-Pipelines-Logs
+    Default: dsi-pipelines-Logs
   
 Resources:
   dynamo:
