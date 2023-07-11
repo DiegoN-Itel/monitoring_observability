@@ -8,7 +8,7 @@ Parameters:
   DynamoFormatMetadataName:
     Description: 'Table name for data formats table'
     Type: String
-    Default: format_metadata_logs
+    Default: format_metadata
   DynamoFormatMetadataKey:
     Description: "key for data format table"
     Type: String
