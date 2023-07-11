@@ -10,7 +10,7 @@ Resources:
     Properties:
       BucketName: !Ref BucketPipelineLogs
       VersioningConfiguration:
-        Status: Disable
+        Status: Suspended
       LifecycleConfiguration:
         Rules:
           - Id: DeleteRule
