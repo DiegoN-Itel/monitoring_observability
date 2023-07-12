@@ -17,7 +17,7 @@ class DynamoUtilities:
     
     def read_item(self,
                   table_key: str,
-                  search_key: str) -> dict:
+                  search_key: str):
         
         response = self.table_connection.get_item(
             Key={
@@ -26,3 +26,15 @@ class DynamoUtilities:
                 )
 
         return response['Item']
+    
+    def delete_item(self,
+                    table_key: str,
+                    search_key: str) -> dict:
+
+        response = self.table_connection.delete_item(
+            Key={
+                table_key: search_key,
+            }
+        )
+
+        return response
