@@ -3,21 +3,28 @@ from utilities.AwsUtilities import AwsUtilities
 from utilities.DynamoUtilities import DynamoUtilities
 
 SERVICE = 'dynamodb'
-TABLE_NAME = "data_quality_logs"
+TABLE_NAME = "format_changes_logs"
 ITEM = {
-        "pipeline":"altice_invoice",
-        "status": "Enable",
-        "extraction": {
-          "05-07-2023": "ok",
-        "load": {
-          "15-06-2023": {
-                "register_amount": 55,
-                "column_amount": 10,
-                "column_names": ['field1', 'field2', 'field3']
-                },
-            }
-        }
-    }
+    "pipeline":"altice_invoice",
+    "status": "Enable",
+    "extraction": {
+
+      "05-07-2023": {
+        "log": "missing fields: ['fieldn']"
+      },
+      "01-07-2023": {
+        "log": "extra fields: ['field1', 'field2']"
+      }
+    },
+    "load": {
+      "15-06-2023": {
+        "log": "wrong datatype fields: ['fieldn']"
+     },
+      "30-06-2023": {
+        "log": "Not allowed values: ['fieldn']"
+     }
+  }
+}
 
 TABLE_KEY = 'pipeline'
 SEARCH_KEY = 'altice_invoice'
@@ -35,14 +42,13 @@ def main():
     
     #Create object
     create_item = Dynamo_object.create_item(ITEM) 
-    print(type(create_item))
-
+    
     #Read Object
     #read_item = Dynamo_object.read_item(TABLE_KEY, SEARCH_KEY)
     #print(read_item)
 
     #Delete Object
-    #delete_item = Dynamo_object.delete_item(TABLE_KEY, 'other_pipeline')
+    #delete_item = Dynamo_object.delete_item(TABLE_KEY, 'altice_invoice')
 
 if __name__ == "__main__":
     main()
