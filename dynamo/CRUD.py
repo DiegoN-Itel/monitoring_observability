@@ -1,14 +1,11 @@
 import boto3
+from utilities.AwsUtilities import AwsUtilities
+from utilities.DynamoUtilities import DynamoUtilities
 
+SERVICE = 'dynamodb'
 TABLE_NAME = "format_metadata"
-
-dynamodb = boto3.resource('dynamodb')
-
-table = dynamodb.Table(TABLE_NAME)
-
-response = table.put_item(
-        Item={
-            "pipeline": "altice_invoice",
+ITEM = {
+            "pipeline": "other_pipeline2",
             "Status": 'Enable',
             "tables": {
                 "nrrc": {
@@ -29,5 +26,29 @@ response = table.put_item(
 		            "not_ready_reason_pct_duration" : "int"
                 }
             }
-            }
-    )
+        }
+
+TABLE_KEY = 'pipeline'
+SEARCH_KEY = 'altice_invoice'
+
+def main():
+
+    ##Service Connection
+    AWSObject = AwsUtilities(SERVICE)
+    connection = AWSObject.service_connection()
+    table = AWSObject.dynamo_table_connection(TABLE_NAME, connection)
+
+
+    ##Dynamo
+    Dynamo_object = DynamoUtilities(connection, table)
+    
+    #Create object
+    create_item = Dynamo_object.create_item(ITEM) 
+    print(type(create_item))
+
+    #Read Object
+    read_item = Dynamo_object.read_item(TABLE_KEY, SEARCH_KEY)
+    print(read_item)
+
+if __name__ == "__main__":
+    main()

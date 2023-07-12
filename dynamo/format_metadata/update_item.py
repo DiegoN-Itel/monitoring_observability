@@ -20,7 +20,7 @@ def main():
 #    remove_nrrc_table = remove_table(object, 'nrrc')
 #    add_new_table = add_table(object, 'new_test', field_tests)
 
-    update_dynamo(table, KEY_FIELD, KEY, 'tables', new_object['tables'])
+    update_dynamo_field(table, KEY_FIELD, KEY, 'tables', new_object['tables'])
 
     print('do some changes')
     object1 = get_object(table, KEY_FIELD, KEY)
@@ -78,7 +78,7 @@ def add_table(item:dict,
 
     print(item['tables'])
 
-def update_dynamo(table: boto3.resources,
+def update_dynamo_field(table: boto3.resources,
                   key_field: str,
                   key: str,
                   field: str,
