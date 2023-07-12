@@ -1,7 +1,7 @@
 import boto3
 from datetime import date
 
-TABLE_NAME = "format_changes_logs"
+TABLE_NAME = "data_quality_logs"
 KEY_FIELD = 'pipeline'
 KEY = "altice_invoice"
 
@@ -11,7 +11,7 @@ def main():
     object = get_object(table, KEY_FIELD, KEY)
 
     new_object = add_extraction_log(object, 'example of log')
-    new_object2 = add_load_log(object, 'example of log')
+    new_object2 = add_load_log(object, 666, 666, ['field1', 'field2', 'field3'])
 
     #Add extraction log to Dynamo
     update_dynamo_field(table, KEY_FIELD, KEY, 'extraction', new_object['extraction'])
@@ -53,12 +53,19 @@ def add_extraction_log(object: dict,
     return object
 
 def add_load_log(object: dict,
-                 log_value: str) -> dict:
+                 register_amount: int,
+                 column_amount: int,
+                 column_names: list) -> dict:
     
     today = date.today()
-    object['load'][str(today)] = {'log': log_value}
-
+    object['load'][str(today)] = {
+                                    "register_amount": register_amount,
+                                    "column_amount": column_amount,
+                                    "column_names": column_names#['field1', 'field2', 'field3']
+                                }
+    
     return object
+
 
 def update_dynamo_field(table: boto3.resources,
                   key_field: str,
